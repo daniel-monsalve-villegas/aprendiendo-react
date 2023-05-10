@@ -15,18 +15,21 @@ const App = () => {
       .then((data) => {
         const { fact } = data;
         setFact(fact);
-
-        const firstThreeWord = fact.split(' ', 3).join(' ');
-        fetch(
-          `https://cataas.com/cat/says/${firstThreeWord}?size=50&color=red&json=true`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            const { url } = data;
-            setImageUrl(url);
-          });
       });
   }, []);
+
+  useEffect(() => {
+    if (!fact) return;
+    const firstThreeWord = fact.split(' ', 5).join(' ');
+    fetch(
+      `https://cataas.com/cat/says/${firstThreeWord}?size=50&color=red&json=true`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const { url } = data;
+        setImageUrl(url);
+      });
+  }, [fact]);
 
   return (
     <div>
