@@ -1,40 +1,51 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import Movies from './components/Movies'
 import useMovies from './hooks/useMovies'
 
-function App() {
-  const { movies: mappedMovies } = useMovies()
-  const [query, setQuery] = useState('')
+const useSearch = () => {
+  const [search, updateSearch] = useState('')
   const [error, setError] = useState(null)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
-  const handleChange = (e) => {
-    const newQuery = e.target.value
-    if (newQuery.startsWith(' ')) return
-    setQuery(e.target.value)
-  }
+  const isFirstInput = useRef(true)
 
   useEffect(() => {
-    if (query === '') {
+    if (isFirstInput.current) {
+      isFirstInput.current = search === ''
+      return
+    }
+
+    if (search === '') {
       setError('No se puede buscar una película vacía')
       return
     }
 
-    if (query.match(/^d+$/)) {
+    if (search.match(/^d+$/)) {
       setError('No se puede buscar una película con un número')
       return
     }
 
-    if (query.length < 3) {
+    if (search.length < 3) {
       setError('La búsqueda debe tener al menos 3 caracteres')
       return
     }
     setError(null)
-  }, [query])
+  }, [search])
+
+  return { search, updateSearch, error }
+}
+
+const App = () => {
+  const { search, updateSearch, error } = useSearch()
+  const { movies, loading, getMovies } = useMovies({ search })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    getMovies()
+  }
+
+  const handleChange = (e) => {
+    updateSearch(e.target.value)
+  }
 
   return (
     <div className='page'>
@@ -43,7 +54,7 @@ function App() {
         <form className='form' onSubmit={handleSubmit}>
           <input
             name='query'
-            value={query}
+            value={search}
             onChange={handleChange}
             placeholder='Avengers, Star Wars, The Matrix...'
           />
@@ -53,7 +64,8 @@ function App() {
       </header>
 
       <main>
-        <Movies movies={mappedMovies} />
+        {loading ? <p>Cargando...</p> : null}
+        <Movies movies={movies} />
       </main>
     </div>
   )
