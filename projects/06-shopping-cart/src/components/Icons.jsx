@@ -6,7 +6,7 @@ export function AddToCartIcon() {
       height='24'
       viewBox='0 0 24 24'
       strokeWidth='1'
-      stroke='currentColor'
+      stroke='white'
       fill='none'
       strokeLinecap='round'
       strokeLinejoin='round'>
@@ -28,7 +28,7 @@ export function RemoveFromCartIcon() {
       height='24'
       viewBox='0 0 24 24'
       strokeWidth='1'
-      stroke='currentColor'
+      stroke='white'
       fill='none'
       strokeLinecap='round'
       strokeLinejoin='round'>
@@ -51,7 +51,7 @@ export function ClearCartIcon() {
       height='24'
       viewBox='0 0 24 24'
       strokeWidth='1'
-      stroke='currentColor'
+      stroke='white'
       fill='none'
       strokeLinecap='round'
       strokeLinejoin='round'>
@@ -73,7 +73,7 @@ export function CartIcon() {
       height='24'
       viewBox='0 0 24 24'
       strokeWidth='1'
-      stroke='currentColor'
+      stroke='white'
       fill='none'
       strokeLinecap='round'
       strokeLinejoin='round'>

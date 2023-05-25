@@ -9,8 +9,8 @@
 
 2. Shopping Cart
 
-- [ ] Haz que se puedan añadir los productos a un carrito.
-- [ ] Haz que se puedan añadir los productos a un carrito.
-- [ ] Haz que se puedan añadir los productos a un carrito.
-- [ ] Sincroniza los cambios del carrito con la lista de productos.
-- [ ] Guarda en un localStorage el carrito para que se recupere al recargar la página.
+- [x] Haz que se puedan añadir los productos a un carrito.
+- [x] Haz que se puedan eliminar los productos a un carrito.
+- [x] Haz que se puedan modificar la cantidad dw productos a un carrito.
+- [x] Sincroniza los cambios del carrito con la lista de productos.
+- [x] Guarda en un localStorage el carrito para que se recupere al recargar la página.
